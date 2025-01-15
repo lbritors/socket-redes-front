@@ -14,8 +14,36 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="icon" type="image/ico" href="favicon.ico">
+
+    <!--<script src = "/socket.io/socket.io.js"></script>-->
+
   </head>
   <body>
     <!-- quasar:entry-point -->
+    <!--
+     <script type="module">
+      import createPost from './src/server/backend.js'
+
+      const post = createPost()
+
+      const socket = io()
+
+      socket.on('connect', () =>{
+        const userId = socket.id
+        console.log('User connected on Client with id: ${userId}')
+      })
+
+      socket.on('add-post', command => {
+        post.addPost(command)
+      })
+
+      socket.on('setup', (plataforma) => {
+        console.log('Receiving "setup" event from server')
+        console.log(plataforma)
+        
+        post.setPlataforma(plataforma)
+      })
+     </script>
+    -->
   </body>
 </html>
