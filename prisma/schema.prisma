@@ -15,9 +15,8 @@ datasource db {
 
 model Resumo {
   id        Int      @id @default(autoincrement())
-  autor    String
+  autor     String
   titulo    String
-  conteudo      DateTime
-  createdAt DateTime @default(now())
+  conteudo  DateTime
 }
 
