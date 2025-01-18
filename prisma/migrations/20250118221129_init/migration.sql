@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "Resumo" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "autor" TEXT NOT NULL,
+    "titulo" TEXT NOT NULL,
+    "conteudo" DATETIME NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
