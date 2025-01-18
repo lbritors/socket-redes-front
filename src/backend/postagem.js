@@ -1,23 +1,24 @@
+import prisma from '../../db.js'
+
 export default function createPost() {
   const state = {
     posts: {},
   }
 
-  function setPostagens(newPostagem) {
-    Object.assign(state, newPostagem)
+  async function setPostagens() {
+    const newState = await prisma.resumo.findMany()
+    Object.assing(state, newState)
   }
 
-  function addPostagem(command) {
-    const id = command.id
-    const titulo = command.title
-    const autor = command.autor
-    const conteudo = command.content
-
-    state.posts[id] = {
-      title: titulo,
-      author: autor,
-      content: conteudo,
-    }
+  async function addPostagem(command) {
+    return await prisma.resumo.create({
+      data: {
+        id: command.id,
+        autor: command.autor,
+        titulo: command.title,
+        conteudo: command.content,
+      },
+    })
   }
 
   return {

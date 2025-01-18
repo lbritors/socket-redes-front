@@ -103,11 +103,11 @@ export default defineComponent({
   },
   mounted() {
     this.socket = io('http://localhost:3000')
+    this.socket.on('connect', () => {})
     this.socket.on('welcome', (data) => {
       console.log(data.message)
     })
-    this.socket.emit('setup')
-    this.socket.on('resumos', (resumos) => {
+    this.socket.on('setup', (resumos) => {
       console.log('resumos recebidos: ', resumos)
       this.resumos = resumos
     })

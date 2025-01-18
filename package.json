@@ -2,6 +2,7 @@
   "name": "web-resume",
   "version": "0.0.1",
   "description": "web resume social network",
+  "main": "server.js",
   "productName": "web-resume",
   "author": "lbritors <britoleticiars@gmail.com>",
   "type": "module",
@@ -10,7 +11,8 @@
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
+    "dev:frontend": "quasar dev",
+    "dev:backend": "node server.js",
     "build": "quasar build",
     "postinstall": "quasar prepare"
   },
