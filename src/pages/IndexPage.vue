@@ -61,6 +61,9 @@
 import { defineComponent } from 'vue'
 import { io } from 'socket.io-client'
 import type { Socket } from 'socket.io-client'
+import createPost from '../backend/postagem.js'
+
+const bancoPosts = createPost
 
 export default defineComponent({
   name: 'IndexPage',
@@ -84,6 +87,12 @@ export default defineComponent({
     },
     onSubmit() {
       console.log('Submitted')
+      bancoPosts.addPostagem({
+        title: this.title,
+        autor: this.autor,
+        content: this.editor,
+      })
+      /*
       if (this.socket) {
         this.socket.emit('message', {
           title: this.title,
@@ -91,7 +100,8 @@ export default defineComponent({
           content: this.editor,
         })
       }
-      console.log(this.socket)
+        */
+      //console.log(this.socket)
       this.toggleDialog()
     },
     onCancel() {
@@ -102,7 +112,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.socket = io('http://localhost:3000')
+    this.socket = io('https://3000-lbritors-socketredesbac-ehmoq10q39s.ws-us117.gitpod.io:3000')
     this.socket.on('connect', () => {})
     this.socket.on('welcome', (data) => {
       console.log(data.message)

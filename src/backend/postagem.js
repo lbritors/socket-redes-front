@@ -13,7 +13,7 @@ export default function createPost() {
   async function addPostagem(command) {
     return await prisma.resumo.create({
       data: {
-        id: command.id,
+        id: 'id' in command ? command.playerX : Math.floor(Math.random()),
         autor: command.autor,
         titulo: command.title,
         conteudo: command.content,
