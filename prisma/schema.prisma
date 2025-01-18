@@ -17,6 +17,6 @@ model Resumo {
   id        Int      @id @default(autoincrement())
   autor     String
   titulo    String
-  conteudo  DateTime
+  conteudo  String
 }
 
