@@ -75,6 +75,7 @@ export default defineComponent({
       isMarkdown: true,
       socket: null as Socket | null,
       showDialog: false,
+      resumos: [],
     }
   },
   methods: {
@@ -104,6 +105,11 @@ export default defineComponent({
     this.socket = io('http://localhost:3000')
     this.socket.on('welcome', (data) => {
       console.log(data.message)
+    })
+    this.socket.emit('setup')
+    this.socket.on('resumos', (resumos) => {
+      console.log('resumos recebidos: ', resumos)
+      this.resumos = resumos
     })
   },
 
