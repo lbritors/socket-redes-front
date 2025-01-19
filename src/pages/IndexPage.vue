@@ -38,16 +38,21 @@
             <q-card-title class="text-h6">Resumos</q-card-title>
           </q-card-section>
           <q-card-section>
-            <q-list bordered>
-              <q-item v-for="n in 10" :key="n">
-                <q-item-section>
-                  <q-item-label>Resumos</q-item-label>
-                </q-item-section>
-                <q-item-section side>
-                  <q-btn flat icon="edit" @click="toggleDialog" color="primary" />
-                  <q-btn flat icon="delete" color="primary" />
-                  <q-btn flat icon="favorite_border" color="primary" />
-                </q-item-section>
+            <q-list>
+              <q-item v-for="resumo in resumos" :key="resumo.id">
+                <q-card class="full-width card">
+                  <q-card-section>
+                    <div  class="text-h6">{{ resumo.titulo }}</div>
+                    <div class="text-subtitle2">by {{ resumo.autor }} </div>
+                  </q-card-section>
+                  <q-separator inset/>
+                  <q-card-section>
+                    <div>{{ resumo.conteudo }}</div>
+                  </q-card-section>
+                  <q-card-section>
+                   
+                  </q-card-section>
+                </q-card>
               </q-item>
             </q-list>
           </q-card-section>
@@ -62,6 +67,13 @@ import { defineComponent } from 'vue'
 import { io } from 'socket.io-client'
 import type { Socket } from 'socket.io-client'
 
+interface Resumo{
+  id: number,
+  titulo: string,
+  autor: string,
+  conteudo: string
+}
+
 export default defineComponent({
   name: 'IndexPage',
 
@@ -75,7 +87,7 @@ export default defineComponent({
       isMarkdown: true,
       socket: null as Socket | null,
       showDialog: false,
-      resumos: [],
+      resumos: [] as Resumo [],
     }
   },
   methods: {
@@ -102,15 +114,15 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.socket = io('https://3000-lbritors-socketredesbac-0ayvzvbwq1e.ws-us117.gitpod.io', {
+    this.socket = io('https://3000-lbritors-socketredesbac-frl873gb309.ws-us117.gitpod.io', {
       transports: ['websocket'],
     })
     this.socket.on('welcome', (data) => {
       console.log(data.message)
     })
-    this.socket.on('setup', (resumos) => {
+    this.socket.on('setup', (resumos: Resumo[]) => {
       console.log('resumos recebidos: ', resumos)
-      //this.resumos = resumos
+      this.resumos = resumos
     })
   },
 
@@ -131,5 +143,7 @@ export default defineComponent({
 .card {
   min-width: 500px;
   padding: 10px;
+  min-height: 300px;
+  max-width: 700px;
 }
 </style>
