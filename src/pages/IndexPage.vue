@@ -102,7 +102,10 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.socket = io('http://localhost:3000')
+    this.socket = io('https://3000-lbritors-socketredesbac-8tyjg255l2r.ws-us117.gitpod.io', {
+      transports: ['websocket'],
+
+    })
     this.socket.on('welcome', (data) => {
       console.log(data.message)
     })
