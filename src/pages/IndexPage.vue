@@ -102,17 +102,15 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.socket = io('https://3000-lbritors-socketredesbac-8tyjg255l2r.ws-us117.gitpod.io', {
+    this.socket = io('https://3000-lbritors-socketredesbac-0ayvzvbwq1e.ws-us117.gitpod.io', {
       transports: ['websocket'],
-
     })
     this.socket.on('welcome', (data) => {
       console.log(data.message)
     })
-    this.socket.emit('setup')
-    this.socket.on('resumos', (resumos) => {
+    this.socket.on('setup', (resumos) => {
       console.log('resumos recebidos: ', resumos)
-      this.resumos = resumos
+      //this.resumos = resumos
     })
   },
 
